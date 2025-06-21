@@ -1,0 +1,19 @@
+version: v1
+services:
+  spacetime:
+    type: docker
+    dockerfile: Dockerfile
+    buildContext: .
+    ports:
+      - port: 9000
+        externalPort: 9000
+        protocol: TCP
+    envVars: []
+    volumes: []
+    healthChecks:
+      readiness:
+        type: http
+        path: /health
+        port: 9000
+        initialDelaySeconds: 5
+        periodSeconds: 10
